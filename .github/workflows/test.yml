@@ -24,5 +24,3 @@ jobs:
         run: cargo test --release --verbose --lib
       - name: Run Ignored Test
         run: cargo test --release --verbose -- --ignored
-      - name: Build
-        run: cargo build --verbose --release
