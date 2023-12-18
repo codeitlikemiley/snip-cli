@@ -1,4 +1,4 @@
-# CLI Tool for Managing LuaSnip Rust Snippets
+# CLI Tool for Managing LuaSnip and VSCode Snippets
 
 [![Rust Build and Test](https://github.com/codeitlikemiley/rsnippet/actions/workflows/test.yml/badge.svg)](https://github.com/codeitlikemiley/rsnippet/actions/workflows/test.yml)
 
