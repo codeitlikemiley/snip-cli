@@ -8,7 +8,7 @@ use snip::actions::search_snippets::search_snippets;
 use snip::actions::show_snippet::show_snippet;
 use snip::actions::update_key_in_file::update_key_in_file;
 use snip::actions::write_snippet_to_file::write_snippet_to_file;
-use snip::constants::{DEFAULT_CONFIG_PATH, DEFAULT_SNIPPET_PATH};
+use snip::constants::DEFAULT_SNIPPET_PATH;
 use snip::helpers::expand_home_dir::expand_home_dir;
 use snip::helpers::get_app_config::get_app_config;
 use snip::models::cli_model::Cli;
@@ -105,22 +105,4 @@ async fn main() -> Result<()> {
     }
 
     Ok(())
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_env_var_is_not_set_then_use_default_config_path() {
-        // Arrange
-        let expected = expand_home_dir(DEFAULT_CONFIG_PATH)
-            .expect("Failed to find home directory")
-            .to_string_lossy()
-            .into_owned();
-        // Act
-        let actual = main();
-        // Assert
-        assert_eq!(expected, actual);
-    }
 }
