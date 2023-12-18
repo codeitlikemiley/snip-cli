@@ -31,4 +31,4 @@ jobs:
         with:
           name: snip-${{ matrix.os }}
           path: |
-            ./target/release/rsnippet${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+            ./target/release/snip${{ matrix.os == 'windows-latest' && '.exe' || '' }}
