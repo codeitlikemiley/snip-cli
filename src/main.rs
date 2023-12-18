@@ -28,7 +28,6 @@ async fn main() -> Result<()> {
         Ok(cfg) => cfg,
         Err(_) => {
             let default_snippet_path = expand_home_dir(DEFAULT_SNIPPET_PATH)
-                .expect("Failed to find home directory")
                 .to_string_lossy()
                 .into_owned();
             let new_config = SnipConfig {
