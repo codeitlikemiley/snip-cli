@@ -1,4 +1,4 @@
-name: Rust Build and Test
+name: Rust CI Test
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
       - name: Install Rust
@@ -26,9 +26,3 @@ jobs:
         run: cargo test --release --verbose -- --ignored
       - name: Build
         run: cargo build --verbose --release
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: snip-${{ matrix.os }}
-          path: |
-            ./target/release/snip${{ matrix.os == 'windows-latest' && '.exe' || '' }}
