@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Get the username of the user who initiated the installer
+REAL_USER=$USER
+
+# Get the home directory of the user who initiated the installer
+USER_HOME=$(eval echo ~$REAL_USER)
+
+# Check if the ~/.local/bin directory exists, if not, create it
+if [ ! -d "$USER_HOME/.local/bin" ]; then
+    mkdir -p "$USER_HOME/.local/bin"
+fi
+
+# delete the old symlink if it exists
+if [ -L "$USER_HOME/.local/bin/rsnippet" ]; then
+    rm "$USER_HOME/.local/bin/rsnippet"
+fi
+
+
+# Create the symlink in ~/.local/bin
+ln -s "/Applications/Rsnippet.app/Contents/MacOS/rsnippet" "$USER_HOME/.local/bin/rsnippet"

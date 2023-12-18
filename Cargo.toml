@@ -1,0 +1,32 @@
+[package]
+name = "rsnippet"
+version = "0.1.0"
+edition = "2021"
+authors = ["Rustacean <codeitlikemiley@gmail.com>"]
+description = "A CLI tool for managing Neovim LuaSnip Rust snippets"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.75"
+clap = { version = "4.4.11", features = ["cargo", "derive", "string"] }
+serde = { version = "1.0.193", features = ["derive"] }
+serde_json = "1.0.108"
+tokio = { version = "1.35.0", features = ["full"] }
+tempfile = { version = "3.8.1", features = [] }
+prettytable = "0.10.0"
+crossterm = "0.27.0"
+config = "0.13.4"
+dirs-next = "2.0.0"
+
+[package.metadata.bundle]
+name = "rsnippet" # The name of your application
+identifier = "com.codeitlikemiley.rsnippet" # The bundle identifier of your application
+copyright = "Copyright (c) codeitlikemiley 2023. All rights reserved."
+category = "Developer Tool"
+short_description = "A CLI tool for managing Neovim LuaSnip Rust snippets"
+long_description = "A CLI tool for managing Neovim LuaSnip Rust snippets"
+version = "0.1.0" # Version of your application
+osx_url_schemes = ["com.codeitlikemiley.rsnippet"] # URL schemes your application supports
+script = "scripts/postinstall" # Path to your postinstall script
+
