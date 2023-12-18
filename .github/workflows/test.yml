@@ -3,8 +3,6 @@ name: Rust Build and Test
 on:
   pull_request:
     branches: [ main ]
-  merge:
-    branches: [ main ]
   push:
     branches: [ main ]
 
