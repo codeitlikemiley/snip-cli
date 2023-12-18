@@ -2,6 +2,8 @@
 
 [![Rust Build and Test](https://github.com/codeitlikemiley/snip/actions/workflows/test.yml/badge.svg)](https://github.com/codeitlikemiley/snip/actions/workflows/test.yml)
 
+[![release](https://github.com/codeitlikemiley/snip/actions/workflows/release.yml/badge.svg)](https://github.com/codeitlikemiley/snip/actions/workflows/release.yml)
+
 Note: This is an additional tools to be used with my [Neovide Neovim](https://github.com/codeitlikemiley/nvim) rust setup.
 
 > VSCode Snippet Compatible
@@ -45,7 +47,7 @@ $env:Path += ";C:\Users\YourUsername\bin"
 
 ## Managing Multiple Snippets File for Different Languages
 
-You can use the command `snip config <path>` to change the Snippets File on Runtime. 
+You can use the command `snip config <path>` to change the Snippets File on Runtime.
 
 Note: This is quite useful when you want to manage different Snippets File for different languages.
 
@@ -252,4 +254,3 @@ snip config --help
 # Config Snippet
 snip config <path>
 ```
-
