@@ -27,6 +27,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: rsnippet-${{ matrix.os }}
+          name: snip-${{ matrix.os }}
           path: |
             ./target/release/rsnippet${{ matrix.os == 'windows-latest' && '.exe' || '' }}

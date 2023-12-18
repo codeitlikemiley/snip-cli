@@ -1,5 +1,5 @@
 [package]
-name = "rsnippet"
+name = "snip"
 version = "0.1.0"
 edition = "2021"
 authors = ["Rustacean <codeitlikemiley@gmail.com>"]
@@ -16,15 +16,16 @@ tokio = { version = "1.35.0", features = ["full"] }
 tempfile = { version = "3.8.1", features = [] }
 prettytable = "0.10.0"
 dirs-next = "2.0.0"
+dotenv = { version = "0.15.0", features = ["clap"] }
 
 [package.metadata.bundle]
-name = "rsnippet" # The name of your application
-identifier = "com.codeitlikemiley.rsnippet" # The bundle identifier of your application
+name = "snip" # The name of your application
+identifier = "com.codeitlikemiley.snip" # The bundle identifier of your application
 copyright = "Copyright (c) codeitlikemiley 2023. All rights reserved."
 category = "Developer Tool"
 short_description = "A CLI tool for managing Neovim LuaSnip Rust snippets"
 long_description = "A CLI tool for managing Neovim LuaSnip Rust snippets"
 version = "0.1.0" # Version of your application
-osx_url_schemes = ["com.codeitlikemiley.rsnippet"] # URL schemes your application supports
+osx_url_schemes = ["com.codeitlikemiley.snip"] # URL schemes your application supports
 script = "scripts/postinstall" # Path to your postinstall script
 
