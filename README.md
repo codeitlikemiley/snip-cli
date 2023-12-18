@@ -4,6 +4,8 @@
 
 Note: This is an additional tools to be used with my [Neovide Neovim](https://github.com/codeitlikemiley/nvim) rust setup.
 
+> VSCode Snippet Compatible
+
 ## Installation
 
 1. You can Download and Install [rsnippet](https://github.com/codeitlikemiley/rsnippet/releases) on Releases Page
@@ -230,6 +232,7 @@ rsnippet show impl_deref
 </details>
 
 9. Config Snippet
+Note: This can be used to switch Configuration e.g. you wanna manage Python Snippet , you can do just pass in the PATH to that configuration file.
 
 ```sh
 # help
