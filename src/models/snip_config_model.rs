@@ -26,9 +26,6 @@ impl SnipConfig {
     }
 
     pub fn update_path(&mut self, new_path: String) {
-        self.path = expand_home_dir(&new_path)
-            .expect("Failed to find home directory")
-            .to_string_lossy()
-            .into_owned();
+        self.path = expand_home_dir(&new_path).to_string_lossy().into_owned();
     }
 }
