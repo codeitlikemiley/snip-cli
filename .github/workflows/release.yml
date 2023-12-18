@@ -1,79 +1,47 @@
-name: release
+name: Release
 
 on:
   push:
     tags:
-      - '*'
+      - v[0-9]+.*
 
 jobs:
-  build_release:
+  create-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: taiki-e/create-gh-release-action@v1
         with:
-          fetch-depth: 0
+          # (optional)
+          changelog: CHANGELOG.md
+          # (required)
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install Rust Toolchain
-        uses: actions-rs/toolchain@v1
+  upload-assets:
+    needs: create-release
+    strategy:
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            build-tool: cargo-zigbuild
+          # cargo-zigbuild's glibc version suffix is also supported.
+          - target: aarch64-unknown-linux-gnu.2.17
+            os: ubuntu-latest
+            build-tool: cargo-zigbuild
+          - target: aarch64-apple-darwin
+            os: macos-latest
+            build-tool: cargo-zigbuild
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/upload-rust-binary-action@v1
         with:
-          toolchain: stable
-          profile: minimal
-          override: true
-
-      - name: Build and Extract Version
-        run: |
-          cargo build --release
-          echo "::set-output name=version::$(./target/release/snip --version)"
-        id: version
-
-      - name: Build Artifacts for Different Platforms
-        run: |
-          rustup target add x86_64-unknown-linux-gnu
-          rustup target add x86_64-pc-windows-gnu
-          rustup target add x86_64-apple-darwin
-          cargo build --target x86_64-unknown-linux-gnu --release
-          cargo build --target x86_64-pc-windows-gnu --release
-          cargo build --target x86_64-apple-darwin --release
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
-        with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload Linux Artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/x86_64-unknown-linux-gnu/release/snip
-          asset_name: snip-linux-x86_64
-          asset_content_type: application/octet-stream
-
-      - name: Upload Darwin Artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/x86_64-apple-darwin/release/snip
-          asset_name: snip-darwin-x86_64
-          asset_content_type: application/octet-stream
-
-      - name: Upload Windows Artifact
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/x86_64-pc-windows-gnu/release/snip.exe
-          asset_name: snip-windows.exe
-          asset_content_type: application/octet-stream
+          # (required)
+          bin: snip
+          # (optional) Target triple, default is host triple.
+          target: ${{ matrix.target }}
+          # (optional) Tool to build binaries (cargo, cross, or cargo-zigbuild)
+          build-tool: ${{ matrix.build-tool }}
+          # (required) GitHub token for uploading assets to GitHub Releases.
+          token: ${{ secrets.GITHUB_TOKEN }}
