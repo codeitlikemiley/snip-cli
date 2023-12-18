@@ -29,3 +29,7 @@ version = "0.1.0" # Version of your application
 osx_url_schemes = ["com.codeitlikemiley.snip"] # URL schemes your application supports
 script = "scripts/postinstall" # Path to your postinstall script
 
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

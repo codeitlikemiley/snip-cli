@@ -18,4 +18,4 @@ fi
 
 
 # Create the symlink in ~/.local/bin
-ln -s "/Applications/Snip.app/Contents/MacOS/snip" "$USER_HOME/.local/bin/snip"
+ln -s "/Applications/snip.app/Contents/MacOS/snip" "$USER_HOME/.local/bin/snip"
