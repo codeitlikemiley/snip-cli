@@ -14,20 +14,16 @@ jobs:
         os: [ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
-
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           profile: minimal
           override: true
-
-      - name: Build
-        run: cargo build --verbose --release
-
       - name: Run tests
         run: cargo test --verbose --release
-
+      - name: Build
+        run: cargo build --verbose --release
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
