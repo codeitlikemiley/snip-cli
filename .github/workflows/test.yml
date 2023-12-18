@@ -21,7 +21,9 @@ jobs:
           profile: minimal
           override: true
       - name: Run tests
-        run: cargo test --verbose --release
+        run: cargo test --release --verbose --lib
+      - name: Run Ignored Test
+        run: cargo test --release --verbose -- --ignored
       - name: Build
         run: cargo build --verbose --release
       - name: Upload Artifact
