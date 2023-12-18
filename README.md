@@ -1,4 +1,4 @@
-# CLI Tool for Managing LuaSnip Neovim Snippets and VSCode Snippets
+# CLI Tool for Managing Neovim and VSCode Snippets
 
 [![Rust Build and Test](https://github.com/codeitlikemiley/rsnippet/actions/workflows/test.yml/badge.svg)](https://github.com/codeitlikemiley/rsnippet/actions/workflows/test.yml)
 
