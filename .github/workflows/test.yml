@@ -13,6 +13,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
+      - uses: actions/checkout@v3
+      - uses: ouzi-dev/commit-status-updater@v2
+      - if: always()
+        uses: ouzi-dev/commit-status-updater@v2
+        with:
+          status: "${{ job.status }}"
       - uses: actions/checkout@v2
       - name: Install Rust
         uses: actions-rs/toolchain@v1
