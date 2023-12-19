@@ -1,8 +1,8 @@
-# A CLI (snipr) Tool for Managing Neovim and VSCode Snippets
+# A CLI (snip-cli) Tool for Managing Neovim and VSCode Snippets
 
-[![Rust Build and Test](https://github.com/codeitlikemiley/snipr/actions/workflows/test.yml/badge.svg)](https://github.com/codeitlikemiley/snipr/actions/workflows/test.yml)
+[![Rust Build and Test](https://github.com/codeitlikemiley/snip-cli/actions/workflows/test.yml/badge.svg)](https://github.com/codeitlikemiley/snip-cli/actions/workflows/test.yml)
 
-[![release](https://github.com/codeitlikemiley/snipr/actions/workflows/release.yml/badge.svg)](https://github.com/codeitlikemiley/snipr/actions/workflows/release.yml)
+[![release](https://github.com/codeitlikemiley/snip-cli/actions/workflows/release.yml/badge.svg)](https://github.com/codeitlikemiley/snip-cli/actions/workflows/release.yml)
 
 Note: This is an additional tools to be used with my [Neovide Neovim](https://github.com/codeitlikemiley/nvim) rust setup.
 
@@ -10,52 +10,20 @@ Note: This is an additional tools to be used with my [Neovide Neovim](https://gi
 
 ## Installation
 
-1. You can Download and Install [snipr](https://github.com/codeitlikemiley/snipr/releases) on Releases Page
+1. You can Download and Install [snip-cli](https://github.com/codeitlikemiley/snip-cli/releases) on Releases Page
 Note: on MacOS you might need to go to System Preferences > Security & Privacy > General and click Open Anyway to install it
 
 Note: on Windows you might need to Add the command to ENV PATH
 
-or Install it using Cargo
+2. Install it using Cargo
 
 ```sh
-cargo install snipr
-```
-
-
-
-2. Build it from source
-### Clone
-```sh
-git clone htps://github.com/codeitlikemiley/snipr.git
-cd snipr
-```
-
-### For MacOS
-```sh
-./provision.sh
-```
-
-### For Linux
-```sh
-cargo build --release
-mv ./target/release/snipr /usr/local/bin/snipr
-chmod +x /usr/local/bin/snipr
-```
-
-### For Windows
-```sh
-cargo build --release
-
-# Replace 'YourUsername' with your actual username
-Move-Item .\target\release\snipr.exe C:\Users\YourUsername\bin\snipr.exe
-
-# Again, replace 'YourUsername' with your actual username
-$env:Path += ";C:\Users\YourUsername\bin"
+cargo install snip-cli --bin snip
 ```
 
 ## Managing Multiple Snippets File for Different Languages
 
-You can use the command `snipr config <path>` to change the Snippets File on Runtime.
+You can use the command `snip config <path>` to change the Snippets File on Runtime.
 
 Note: This is quite useful when you want to manage different Snippets File for different languages.
 
@@ -69,20 +37,20 @@ but you can change it by setting the `SNIP_CONFIG_PATH` environment variable.
 1. Help
 
 ```sh
-snipr
+snip
 # or
-snipr --help
+snip --help
 ```
 
 <details>
 <summary>Output</summary>
 
 ```sh
-snipr
+snip
 /Users/uriah/.config/nvim/snippets/rust/rust.json
 A CLI tool for managing Neovim LuaSnip Rust snippets
 
-Usage: snipr <COMMAND>
+Usage: snip <COMMAND>
 
 Commands:
   add         Adds entry to Snippet Collection file
@@ -104,38 +72,38 @@ Options:
 2.  Add new snippet
 ```sh
 # help
-snipr add --help
+snip add --help
 # Add Snippet
-snipr add --key <key> --value <value> --description <description> -- "<snippet>"
+snip add --key <key> --value <value> --description <description> -- "<snippet>"
 ```
 
 3. Remove snippet
 
 ```sh
 # help
-snipr remove --help
+snip remove --help
 # Remove Snippet
-snipr remove --key <key>
+snip remove --key <key>
 ```
 
 4. List all snippets
 
 ```sh
 # help
-snipr ls --help
+snip ls --help
 # Usage
-snipr ls <LIST_OPTION | (key or prefix)>
+snip ls <LIST_OPTION | (key or prefix)>
 # List all Keys
-snipr ls key
+snip ls key
 # List all Prefixes
-snipr ls prefix
+snip ls prefix
 ```
 
 <details>
 <summary>Output</summary>
 
 ```sh
-snipr ls key
+snip ls key
 /Users/uriah/.config/nvim/snippets/rust/rust.json
 [src/main.rs:468] list_option = Key
 impl_iterator
@@ -156,16 +124,16 @@ impl_clone_single_field
 
 ```sh
 # help
-snipr update-key --help
+snip update-key --help
 # Update Key
-snipr update-key  --old-key <old-key> --new-key <new-key>
+snip update-key  --old-key <old-key> --new-key <new-key>
 ```
 
 <details>
 <summary>Output</summary>
 
 ```sh
-snipr update-key --old-key "Fuzz match String" --new-key "fuzzy-match-string"
+snip update-key --old-key "Fuzz match String" --new-key "fuzzy-match-string"
 /Users/uriah/.config/nvim/snippets/rust/rust.json
 [src/main.rs:499] &old_key = "Fuzz match String"
 [src/main.rs:499] &new_key = "fuzzy-match-string"
@@ -177,25 +145,25 @@ snipr update-key --old-key "Fuzz match String" --new-key "fuzzy-match-string"
 
 ```sh
 # help
-snipr edit --help
+snip edit --help
 # Update snippet Value
-snipr edit --key <key> --prefix <prefix> --description <description> -- "<snippet>"
+snip edit --key <key> --prefix <prefix> --description <description> -- "<snippet>"
 ```
 
 7. Search Snippet
 
 ```sh
 # help
-snipr search --help
+snip search --help
 # Search Snippet
-snipr search <ID | (key or prefix)> -- "<search_term>"
+snip search <ID | (key or prefix)> -- "<search_term>"
 ```
 
 <details>
 <summary>Output</summary>
 
 ```sh
-snipr search key -- impl
+snip search key -- impl
 /Users/uriah/.config/nvim/snippets/rust/rust.json
 [src/main.rs:490] id = Some(
     Key,
@@ -216,16 +184,16 @@ impl_partialeq_single_field
 
 ```sh
 # help
-snipr show --help
+snip show --help
 # Show Snippet
-snipr show <key_id>
+snip show <key_id>
 ```
 
 <details>
 <summary>Output</summary>
 
 ```sh
-snipr show impl_deref
+snip show impl_deref
 /Users/uriah/.config/nvim/snippets/rust/rust.json
 [src/main.rs:484] &key = "impl_deref"
 +-------------+-------------------------------------------------------------+
@@ -258,7 +226,7 @@ Note: This can be used to switch Configuration e.g. you wanna manage Python Snip
 
 ```sh
 # help
-snipr config --help
+snip config --help
 # Config Snippet
-snipr config <path>
+snip config <path>
 ```

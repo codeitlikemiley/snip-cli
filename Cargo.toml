@@ -1,13 +1,25 @@
 [package]
-name = "snipr"
-version = "0.1.0"
+name = "snip-cli"
+version = "0.1.1"
 edition = "2021"
 authors = ["Uriah G. <codeitlikemiley@gmail.com>"]
-description = "A CLI tool (snipr) for managing Neovim and  VSCode snippets"
+description = "A CLI tool (snip-cli) for managing Neovim and  VSCode snippets"
 readme = "README.md"
 license = "MIT"
 keywords = ["neovim", "snippets", "rust", "cli", "vscode"]
 categories = ["command-line-utilities"]
+
+# use in Github workflow `release`
+[[bin]]
+name = "snip"
+path = "src/main.rs"
+
+# Used when Bunding for OSX
+[[bin]]
+name = "snip-cli"
+path = "src/main.rs"
+
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
@@ -22,15 +34,15 @@ dirs-next = "2.0.0"
 dotenv = { version = "0.15.0", features = ["clap"] }
 
 [package.metadata.bundle]
-name = "snipr" # The name of your application
-identifier = "com.codeitlikemiley.snipr" # The bundle identifier of your application
+name = "snip" # The name of your application
+identifier = "com.codeitlikemiley.snip" # The bundle identifier of your application
 copyright = "Copyright (c) codeitlikemiley 2023. All rights reserved."
 category = "Developer Tool"
 short_description = "A CLI tool for managing Neovim and VSCode snippets"
 long_description = "A CLI tool for managing Neovim and VSCode snippets"
-version = "0.1.0" # Version of your application
+version = "0.1.1" # Version of your application
 osx_url_schemes = [
-  "com.codeitlikemiley.snipr",
+  "com.codeitlikemiley.snip",
 ] # URL schemes your application supports
 script = "scripts/postinstall" # Path to your postinstall script
 
