@@ -1,19 +1,19 @@
 use anyhow::{self, Context, Result};
 use clap::Parser;
-use snipr::actions::create_directory_and_file::create_directory_and_file;
-use snipr::actions::edit_snippet_in_file::edit_snippet_in_file;
-use snipr::actions::list_snippets::list_snippets;
-use snipr::actions::remove_snippet_from_file::remove_snippet_from_file;
-use snipr::actions::search_snippets::search_snippets;
-use snipr::actions::show_snippet::show_snippet;
-use snipr::actions::update_key_in_file::update_key_in_file;
-use snipr::actions::write_snippet_to_file::write_snippet_to_file;
-use snipr::constants::DEFAULT_SNIPPET_PATH;
-use snipr::helpers::expand_home_dir::expand_home_dir;
-use snipr::helpers::get_app_config::get_app_config;
-use snipr::models::cli_model::Cli;
-use snipr::models::commands_model::Commands;
-use snipr::models::snip_config_model::SnipConfig;
+use snip_cli::actions::create_directory_and_file::create_directory_and_file;
+use snip_cli::actions::edit_snippet_in_file::edit_snippet_in_file;
+use snip_cli::actions::list_snippets::list_snippets;
+use snip_cli::actions::remove_snippet_from_file::remove_snippet_from_file;
+use snip_cli::actions::search_snippets::search_snippets;
+use snip_cli::actions::show_snippet::show_snippet;
+use snip_cli::actions::update_key_in_file::update_key_in_file;
+use snip_cli::actions::write_snippet_to_file::write_snippet_to_file;
+use snip_cli::constants::DEFAULT_SNIPPET_PATH;
+use snip_cli::helpers::expand_home_dir::expand_home_dir;
+use snip_cli::helpers::get_app_config::get_app_config;
+use snip_cli::models::cli_model::Cli;
+use snip_cli::models::commands_model::Commands;
+use snip_cli::models::snip_config_model::SnipConfig;
 use std::io::Write;
 
 #[tokio::main]

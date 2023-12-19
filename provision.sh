@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cargo clean
-rm snipr.pkg
+rm snip.pkg
 cargo zigbuild --release
 cargo bundle --release
-pkgbuild --root ./target/release/bundle/osx/snipr.app --install-location "/Applications/snipr.app" --identifier com.codeitlikemiley.snipr --version 0.1.0 --scripts ./scripts snipr.pkg
+pkgbuild --root ./target/release/bundle/osx/snip.app --install-location "/Applications/snip.app" --identifier com.codeitlikemiley.snip --version 0.1.0 --scripts ./scripts snip.pkg

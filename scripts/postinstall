@@ -17,4 +17,4 @@ if [ -L "$USER_HOME/.local/bin/snip" ]; then
 fi
 
 # Create the symlink in ~/.local/bin
-ln -s "/Applications/snipr.app/Contents/MacOS/snipr" "$USER_HOME/.local/bin/snip"
+ln -s "/Applications/snip.app/Contents/MacOS/snip-cli" "$USER_HOME/.local/bin/snip"
