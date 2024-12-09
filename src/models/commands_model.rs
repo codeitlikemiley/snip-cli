@@ -49,4 +49,8 @@ pub enum Commands {
         #[arg(short, long)]
         new_key: String,
     },
+    Open {
+        #[arg(short, long)]
+        editor: Option<String>,
+    },
 }

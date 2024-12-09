@@ -19,7 +19,6 @@ pub fn get_app_config() -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::io::{stdout, Write};
 
     #[test]
     #[ignore]
@@ -34,7 +33,7 @@ mod tests {
         // Act
         let actual = get_app_config();
         // For debugging purpose on CI
-        writeln!(stdout(), "DEBUGGER ENV CONFIG PATH: {}", actual).unwrap();
+        println!("DEBUGGER ENV CONFIG PATH: {}", actual);
         // Assert
         assert_eq!(actual, expected);
     }

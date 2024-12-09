@@ -15,6 +15,7 @@ pub fn create_directory_and_file(file_path: &str) -> anyhow::Result<()> {
     OpenOptions::new()
         .write(true)
         .create(true) // This will create the file if it doesn't exist
+        .truncate(false)
         .open(file_path)
         .context("Failed to create or open the file")?;
 

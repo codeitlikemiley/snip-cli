@@ -3,6 +3,7 @@ use clap::Parser;
 use snip_cli::actions::create_directory_and_file::create_directory_and_file;
 use snip_cli::actions::edit_snippet_in_file::edit_snippet_in_file;
 use snip_cli::actions::list_snippets::list_snippets;
+use snip_cli::actions::open_file_with::open_file_with;
 use snip_cli::actions::remove_snippet_from_file::remove_snippet_from_file;
 use snip_cli::actions::search_snippets::search_snippets;
 use snip_cli::actions::show_snippet::show_snippet;
@@ -14,16 +15,13 @@ use snip_cli::helpers::get_app_config::get_app_config;
 use snip_cli::models::cli_model::Cli;
 use snip_cli::models::commands_model::Commands;
 use snip_cli::models::snip_config_model::SnipConfig;
-use std::io::Write;
 
 #[tokio::main]
 async fn main() -> Result<()> {
     let config_path = get_app_config();
 
-    // Ensure the config directory exists
     create_directory_and_file(&config_path)?;
 
-    // Load or create the configuration
     let config = match SnipConfig::load(&config_path) {
         Ok(cfg) => cfg,
         Err(_) => {
@@ -59,7 +57,7 @@ async fn main() -> Result<()> {
             dbg!(list_option);
             let output = list_snippets(&config.path, list_option)
                 .context("Failed to list snippets from file")?;
-            writeln!(std::io::stdout(), "{}", output).unwrap();
+            println!("{}", output);
         }
         Commands::Edit {
             key,
@@ -75,7 +73,7 @@ async fn main() -> Result<()> {
             dbg!(&key);
             let output =
                 show_snippet(&config.path, key).context("Failed to show snippet from file")?;
-            writeln!(std::io::stdout(), "{}", output).unwrap();
+            println!("{}", output);
         }
         Commands::Search { id, name } => {
             dbg!(id, &name);
@@ -83,7 +81,7 @@ async fn main() -> Result<()> {
                 .context("Failed to search snippet from file")?;
 
             for result in output {
-                writeln!(std::io::stdout(), "{}\n", result).unwrap();
+                println!("{}\n", result);
             }
         }
         Commands::UpdateKey { old_key, new_key } => {
@@ -100,6 +98,10 @@ async fn main() -> Result<()> {
                 config.save(&config_path)?;
                 println!("Configuration updated.");
             }
+        }
+        Commands::Open { editor } => {
+            open_file_with(&config_path, editor)
+                .context("Failed to open the configuration file")?;
         }
     }
 

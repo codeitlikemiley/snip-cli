@@ -16,9 +16,9 @@ mod tests {
 
     #[test]
     fn test_is_fuzzy_match() {
-        assert_ne!(is_fuzzy_match("moon", "bd"), true);
-        assert_ne!(is_fuzzy_match("moon", "mp"), true);
-        assert_eq!(is_fuzzy_match("moon", "mn"), true);
-        assert_eq!(is_fuzzy_match("moon", "oon"), true);
+        assert!(!is_fuzzy_match("moon", "bd"));
+        assert!(!is_fuzzy_match("moon", "mp"));
+        assert!(is_fuzzy_match("moon", "mn"));
+        assert!(is_fuzzy_match("moon", "oon"));
     }
 }

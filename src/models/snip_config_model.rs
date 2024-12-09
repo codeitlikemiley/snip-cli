@@ -2,7 +2,6 @@ use crate::helpers::expand_home_dir::expand_home_dir;
 use anyhow::Context;
 use serde::{Deserialize, Serialize};
 use std::fs;
-use std::io::{stdout, Write};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SnipConfig {
@@ -14,7 +13,7 @@ impl SnipConfig {
         let config_content = fs::read_to_string(path).context("Failed to read config file")?;
         let config: SnipConfig =
             serde_json::from_str(&config_content).context("Failed to parse config file")?;
-        writeln!(stdout(), "{}", &config.path).unwrap();
+        println!("{}", &config.path);
         Ok(config)
     }
 

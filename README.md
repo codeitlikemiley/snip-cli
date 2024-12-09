@@ -230,3 +230,13 @@ snip config --help
 # Config Snippet
 snip config <path>
 ```
+
+10. Edit Config
+
+```sh
+snip open
+# or we can pass in the editor command e.g. code
+snip open --editor code 
+```
+
+This will open the configuration file in the default editor, or the editor specified with the `--editor` flag.

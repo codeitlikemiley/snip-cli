@@ -1,6 +1,7 @@
 pub mod create_directory_and_file;
 pub mod edit_snippet_in_file;
 pub mod list_snippets;
+pub mod open_file_with;
 pub mod remove_snippet_from_file;
 pub mod search_snippets;
 pub mod show_snippet;

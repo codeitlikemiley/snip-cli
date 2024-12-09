@@ -1,6 +1,6 @@
 [package]
 name = "snip-cli"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Uriah G. <codeitlikemiley@gmail.com>"]
 description = "A CLI tool (snip-cli) for managing Neovim and  VSCode snippets"
@@ -14,24 +14,20 @@ categories = ["command-line-utilities"]
 name = "snip"
 path = "src/main.rs"
 
-# Used when Bunding for OSX
-[[bin]]
-name = "snip-cli"
-path = "src/main.rs"
-
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.75"
-clap = { version = "4.4.11", features = ["cargo", "derive", "string"] }
-serde = { version = "1.0.193", features = ["derive"] }
-serde_json = "1.0.108"
-tokio = { version = "1.35.0", features = ["full"] }
-tempfile = { version = "3.8.1", features = [] }
+anyhow = "1.0.94"
+clap = { version = "4.5.23", features = ["cargo", "derive", "string"] }
+serde = { version = "1.0.215", features = ["derive"] }
+serde_json = "1.0.133"
+tokio = { version = "1.42.0", features = ["full"] }
+tempfile = { version = "3.14.0", features = [] }
 prettytable = "0.10.0"
 dirs-next = "2.0.0"
 dotenv = { version = "0.15.0", features = ["clap"] }
+opener = "0.7.2"
 
 [package.metadata.bundle]
 name = "snip" # The name of your application
@@ -40,7 +36,7 @@ copyright = "Copyright (c) codeitlikemiley 2023. All rights reserved."
 category = "Developer Tool"
 short_description = "A CLI tool for managing Neovim and VSCode snippets"
 long_description = "A CLI tool for managing Neovim and VSCode snippets"
-version = "0.1.1" # Version of your application
+version = "0.1.2" # Version of your application
 osx_url_schemes = [
   "com.codeitlikemiley.snip",
 ] # URL schemes your application supports
